@@ -10,44 +10,64 @@ app.get("/", (req, res) => {
 
 const posts = [
     {
-        titolo: 'Post 1',
+        titolo: 'Ciambellone',
         contenuto: 'Questo è il contenuto del primo post.',
-        immagine: 'https://via.placeholder.com/150',
-        tags: ['javascript', 'node.js', 'express']
+        immagine: '/images/ciambellone.jpeg',
+        tags: ['tag1', 'tag2', 'tag3']
     },
     {
-        titolo: 'Post 2',
+        titolo: 'Cracker',
         contenuto: 'Questo è il contenuto del secondo post.',
-        immagine: 'https://via.placeholder.com/150',
-        tags: ['html', 'css', 'frontend']
+        immagine: '/images/craker_barbabietola.jpeg',
+        tags: ['tag4', 'tag5', 'tag6']
     },
     {
-        titolo: 'Post 3',
+        titolo: 'Pane fritto',
         contenuto: 'Questo è il contenuto del terzo post.',
-        immagine: 'https://via.placeholder.com/150',
-        tags: ['backend', 'api', 'rest']
+        immagine: '/images/pane_fritto_dolce.jpeg',
+        tags: ['tag7', 'tag8', 'tag9']
     },
     {
-        titolo: 'Post 4',
+        titolo: 'Pasta',
         contenuto: 'Questo è il contenuto del quarto post.',
-        immagine: 'https://via.placeholder.com/150',
-        tags: ['express', 'middleware', 'web']
+        immagine: '/images/pasta_barbabietola.jpeg',
+        tags: ['tag10', 'tag11', 'tag12']
     },
     {
-        titolo: 'Post 5',
+        titolo: 'Torta',
         contenuto: 'Questo è il contenuto del quinto post.',
-        immagine: 'https://via.placeholder.com/150',
-        tags: ['node', 'mongodb', 'database']
+        immagine: '/images/torta_paesana.jpeg',
+        tags: ['tag13', 'tag14', 'tag15']
     }
 ];
 
 app.get("/bacheca", (req, res) => {
     const counter = posts.length;
-    const res = {
+    const response = {
         conteggio: counter,
         posts: posts
-    }
-    res.json(res);
+    };
+    res.json(response);
+});
+
+app.get("/ciambellone", (req, res) => {
+    res.send('<img src="/images/ciambellone.jpeg"')
+});
+
+app.get("/cracker", (req, res) => {
+    res.send('<img src="/images/cracker_barbabietola.jpeg"')
+});
+
+app.get("/pane", (req, res) => {
+    res.send('<img src="/images/pane_fritto_dolce.jpeg"')
+});
+
+app.get("/pasta", (req, res) => {
+    res.send('<img src="/images/pasta_barbabietola.jpeg"')
+});
+
+app.get("/torta", (req, res) => {
+    res.send('<img src="/images/torta_paesana.jpeg"')
 });
 
 
