@@ -41,9 +41,14 @@ const posts = [
     }
 ];
 
-app.get("/posts", (req, res) => {
-    res.json(posts);
-})
+app.get("/bacheca", (req, res) => {
+    const counter = posts.length;
+    const res = {
+        conteggio: counter,
+        posts: posts
+    }
+    res.json(res);
+});
 
 
 
