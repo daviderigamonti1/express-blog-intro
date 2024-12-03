@@ -12,37 +12,73 @@ router.get("/", (req, res) => {
     };
 
     if (postsName) {
-        response.data = posts.filter((post) => post.name.toLowerCase().includes(postsName.toLowerCase())
+        response.data = posts.filter((post) => post.titolo.toLowerCase().includes(postsName.toLowerCase())
         );
-        if (response.posts.length < 1) {
-            res.status(404);
-            response = {
-                error: 404,
-                message: "Non ci sono posts per la tua ricerca",
-            };
-        }
     }
     res.json(response);
 });
 
 router.get("/:id", (req, res) => {
-
+    const postId = parseInt(req.params.id);
+    const item = posts.find(item => item.id === postId);
+    if (item) {
+        res.json({
+            success: true,
+            item,
+        });
+    } else {
+        res.status(404);
+        res.json({
+            success: false,
+            message: "Il post non esiste",
+        });
+    }
 });
 
 router.post("/", (req, res) => {
     res.send("Creazione nuovo post");
 });
 
-router.put("/", (req, res) => {
-    res.send("Modifica integrale del post");
+router.put("/:id", (req, res) => {
+    const postId = parseInt(req.params.id);
+    const item = posts.find(item => item.id === postId);
+    if (item) {
+        res.send(`Modifica integrale del post ${postId}`);
+    } else {
+        res.status(404);
+        res.json({
+            success: false,
+            message: "Il post non esiste",
+        });
+    }
 });
 
-router.patch("/", (req, res) => {
-    res.send("Modifica parziale del post");
+router.patch("/:id", (req, res) => {
+    const postId = parseInt(req.params.id);
+    const item = posts.find(item => item.id === postId);
+    if (item) {
+        res.send(`Modifica parziale del post ${postId}`);
+    } else {
+        res.status(404);
+        res.json({
+            success: false,
+            message: "Il post non esiste",
+        });
+    }
 });
 
-router.delete("/", (req, res) => {
-    res.send("Cancellazione del post");
+router.delete("/:id", (req, res) => {
+    const postId = parseInt(req.params.id);
+    const item = posts.find(item => item.id === postId);
+    if (item) {
+        res.send(`Cancellazione del post ${postId}`);
+    } else {
+        res.status(404);
+        res.json({
+            success: false,
+            message: "Il post non esiste",
+        });
+    }
 });
 
 module.exports = router;
